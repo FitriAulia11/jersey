@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -54,7 +54,7 @@ Route::get('/search-jersey', function (\Illuminate\Http\Request $request) {
         'Jersey Volly',
         'Jersey Esports',
         'Jersey Badminton',
-        'Jersey Futsal warna Hitam',
+        'Jersey Custem',
     ];
 
     $results = array_filter($all, function($item) use ($keyword) {
@@ -72,14 +72,11 @@ Route::get('/spesifikasi', function () {
     return view('spesifikasi');
 })->name('spesifikasi');
 
-Route::get('/portfolio', function () {
-    return view('portfolio');
-})->name('portfolio');
-
-Route::get('/testimoni', function () {
-    return view('testimoni');
-})->name('testimoni');
+Route::get('/portofolio', function () {
+    return view('portofolio');
+})->name('portofolio');
 
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
+

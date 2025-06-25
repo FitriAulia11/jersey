@@ -22,9 +22,13 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
-                <a class="navbar-brand fw-bold fs-4 text-dark" href="{{ url('/') }}">
-                    JERSEY <span class="text-danger">BANDUNG</span>
+                <!-- Logo + Brand -->
+                <a class="navbar-brand d-flex align-items-center gap-2 text-dark fw-bold fs-4" href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo.jpg') }}" alt="Logo" width="48" height="48" class="rounded-circle shadow-sm" style="object-fit: cover;">
+                    <span>JERSEY <span class="text-danger">BANDUNG</span></span>
                 </a>
+
+                <!-- Toggle Button Mobile -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,62 +37,25 @@
                     @php
                         $menuItems = [
                             'Home' => '/',
-                            'Desain' => '/desain',
-                            'Order' => '/#order',
-                            'Harga' => '/#harga',
-                            'Spesifikasi' => '/#spesifikasi',
-                            'Portfolio' => '/#portfolio',
-                            'Testimoni' => '/#testimoni',
-                            'Kontak' => '/#kontak',
+                            'Desain' => 'desain',
+                            'Order' => 'order',
+                            'Spesifikasi' => 'spesifikasi',
+                            'Portofolio' => 'portofolio',
+                            'Kontak' => 'kontak',
                         ];
                     @endphp
 
-                    <!-- Menu Navigasi -->
-                    <ul class="navbar-nav fw-semibold me-3">
+                    <ul class="navbar-nav fw-semibold me-3 text-uppercase">
                         @foreach($menuItems as $label => $link)
                             <li class="nav-item mx-2">
-                                <a class="nav-link text-dark {{ request()->is(ltrim($link, '/')) ? 'active' : '' }}" href="{{ url($link) }}">
+                                <a class="nav-link px-3 py-2 rounded {{ request()->is(ltrim($link, '/')) ? 'text-white bg-danger shadow-sm' : 'text-dark' }}"
+                                   href="{{ url($link) }}"
+                                   style="transition: all 0.3s ease;">
                                     {{ $label }}
                                 </a>
                             </li>
                         @endforeach
                     </ul>
-
-                    <!-- Auth (sembunyikan jika sedang di halaman desain) -->
-                    @if (!request()->is('desain','order','spesifikasi','portofoio','testimoni','kontak'))
-                        <ul class="navbar-nav">
-                            @guest
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                                    </li>
-                                @endif
-
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    @endif
                 </div>
             </div>
         </nav>
@@ -97,6 +64,17 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+<!-- Footer Global -->
+<footer class="bg-dark text-white py-3 mt-5">
+    <div class="container text-center small">
+        <p class="mb-1">
+            <strong>Jersey Bandung</strong> — 3PHG+RFF, Jl. Cibiru Tonggoh, Pasir Biru, Kec. Cibiru, Kota Bandung, Jawa Barat 40615 | 
+            Telp/WA: +62 857 237 369 46
+        </p>
+        <p class="mb-0">&copy; {{ date('Y') }} Jersey Bandung. All rights reserved.</p>
+    </div>
+</footer>
     </div>
 </body>
 </html>

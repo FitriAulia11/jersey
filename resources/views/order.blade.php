@@ -2,14 +2,74 @@
 
 @section('content')
 
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .hero-bg {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('{{ asset('img/th (1).jpeg') }}') center center / cover no-repeat;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+
+    .hero-bg::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+
+    .hero-bg .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #dc3545;
+        margin-bottom: 1.5rem;
+    }
+
+    .suggestion-item {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .suggestion-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .img-hover:hover {
+        transform: scale(1.03);
+        transition: 0.3s;
+    }
+</style>
+
 <!-- Hero Section -->
-<section class="hero-bg text-center text-white py-5" style="background: linear-gradient(to right, #111, #444);">
+<section id="home" class="hero-bg text-center d-flex align-items-center" style="
+  height: 350px;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('{{ asset('img/logo.jpg') }}') center center no-repeat;
+  background-size: cover;
+">
   <div class="container">
-    <h1 class="display-4 fw-bold mb-3">Cara Pemesanan Jersey <span class="text-danger">Bandung</span></h1>
-    <p class="lead mb-4">Pesan jersey custom mulai dari 1 pcs dengan desain sesukamu!</p>
-    <a href="#order" class="btn btn-outline-light btn-lg px-4">Lihat Panduan Order</a>
+    <h1 class="h3 fw-bold text-white">
+      Bikin Jersey <span class="text-warning">Full Print</span> Kualitas Premium
+    </h1>
+    <p class="text-white-50 mb-0">Mulai dari 1 pcs, harga terjangkau, desain suka-suka!</p>
   </div>
 </section>
+
 
 <!-- Order Section -->
 <section id="order" class="py-5 bg-light">
