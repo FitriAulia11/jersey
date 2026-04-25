@@ -9,34 +9,162 @@
       <h2 class="section-title text-danger fw-bold display-6">📋 Spesifikasi Jersey</h2>
     </div>
 
-    <!-- Bahan -->
-<h2 class="fw-bold text-center mb-4 text-uppercase">Bahan</h2>
-    <div class="row justify-content-center mb-5">
-      <div class="col-md-3 col-6 mb-4">
-        <img src="{{ asset('img/bahan1.jpg') }}" alt="Drifit Mtiss" class="img-fluid rounded shadow-sm" style="max-height: 200px;">
-        <p class="text-center fw-semibold mt-2">DRIFIT MTISS</p>
-      </div>
-      <div class="col-md-3 col-6 mb-4">
-        <img src="{{ asset('img/bahan2.jpg') }}" alt="Drifit Jarum" class="img-fluid rounded shadow-sm" style="max-height: 200px;">
-        <p class="text-center fw-semibold mt-2">DRIFIT JARUM</p>
-      </div>
-      <div class="col-md-3 col-6 mb-4">
-        <img src="{{ asset('img/bahan3.jpg') }}" alt="Drifit Benzema" class="img-fluid rounded shadow-sm" style="max-height: 200px;">
-        <p class="text-center fw-semibold mt-2">DRIFIT BENZEMA</p>
-      </div>
-      <div class="col-md-3 col-6 mb-4">
-        <img src="{{ asset('img/bahan4.jpg') }}" alt="D. Bilbao" class="img-fluid rounded shadow-sm" style="max-height: 200px;">
-        <p class="text-center fw-semibold mt-2">D. BILBAO</p>
-      </div>
-    </div>
+<!-- Bahan -->
+<div class="container">
+  <style>
+  .judul-bahan {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .judul-bahan::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #0d6efd; /* warna biru bootstrap */
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+</style>
+
+<style>
+  .img-bahan {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .nama-kain {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+  }
+</style>
+
+<h2 class="judul-bahan">Bahan</h2>
+
+<div class="row mb-5 justify-content-center">
+
+  <!-- 5 atas -->
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/Air walk.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">AIR WALK</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/Dry- fit brazil.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">DRY FIT BRAZIL</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/Dry-fit milano.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">DRY FIT MILANO</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/Dtrop nidle.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">DROP NIDLE</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/Embosh curly.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">EMBOSH CURLY</p>
+  </div>
+
+  <!-- pindah baris -->
+  <div class="w-100"></div>
+
+  <!-- 4 bawah (tengah) -->
+  <div class="col-md-2 col-6 mb-4 offset-md-1">
+    <img src="{{ asset('img/Embosh oscar.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">EMBOSH OSCAR</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/Embosh Topo.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">EMBOSH TOPO</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/micro cool.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">MICRO COOL</p>
+  </div>
+
+  <div class="col-md-2 col-6 mb-4">
+    <img src="{{ asset('img/mojaik.jpeg') }}" class="img-bahan rounded shadow-sm">
+    <p class="nama-kain">MOJAIK</p>
+  </div>
+
+</div>
+
+<!-- Mesin Produksi -->
+<h2 class="judul-bahan">Mesin Produksi</h2>
+
+<style>
+  .img-mesin {
+    width: 100%;
+    height: 220px; /* samakan tinggi */
+    object-fit: cover; /* biar nggak gepeng */
+  }
+</style>
+
+<div class="row justify-content-center mb-5">
+  
+  <div class="col-md-4 col-6 mb-4 text-center">
+    <img src="{{ asset('img/mesin3.jpeg') }}" alt="Mesin 1"
+         class="img-mesin rounded shadow-sm">
+    <p class="fw-semibold mt-2 mb-0">Mesin Printing</p>
+  </div>
+
+  <div class="col-md-4 col-6 mb-4 text-center">
+    <img src="{{ asset('img/mesin 2.jpeg') }}" alt="Mesin 2"
+         class="img-mesin rounded shadow-sm">
+    <p class="fw-semibold mt-2 mb-0">Mesin Press</p>
+  </div>
+
+  <div class="col-md-4 col-6 mb-4 text-center">
+    <img src="{{ asset('img/mesin print.jpeg') }}" alt="Mesin 3"
+         class="img-mesin rounded shadow-sm">
+    <p class="fw-semibold mt-2 mb-0">Mesin Jahit</p>
+  </div>
+
+</div>
+</div>
+
+<div class="container">
+  <style>
+  .judul-bahan {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .judul-bahan::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #0d6efd; /* warna biru bootstrap */
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+</style>
 
 <!-- Model Jersey -->
-<h2 class="fw-bold text-center mb-4 text-uppercase">Model Jersey</h2>
+<h2 class="judul-bahan">Model Jersey</h2>
+
 <div class="row justify-content-center mb-5">
   <div class="col-md-3 col-6 mb-4 text-center">
     <img src="{{ asset('img/g (1).jpg') }}" alt="Model 1"
          class="img-fluid rounded shadow-sm">
-    <p class="fw-semibold mt-2 mb-0">Model 1</p>
+    <p class="fw-semibold mt-2 mb-0">Jersey Pendek</p>
   </div>
   <div class="col-md-3 col-6 mb-4 text-center">
     <img src="{{ asset('img/g (33).jpg') }}" alt="Model 2"
@@ -44,19 +172,41 @@
     <p class="fw-semibold mt-2 mb-0">Jaket</p>
   </div>
   <div class="col-md-3 col-6 mb-4 text-center">
-    <img src="{{ asset('img/g (2).jpg') }}" alt="Model 3"
+    <img src="{{ asset('img/g (42).jpg') }}" alt="Model 3"
          class="img-fluid rounded shadow-sm">
     <p class="fw-semibold mt-2 mb-0">Lengan Panjang</p>
   </div>
   <div class="col-md-3 col-6 mb-4 text-center">
-    <img src="{{ asset('img/g (9).jpg') }}" alt="Model 4"
+    <img src="{{ asset('img/g (43).jpg') }}" alt="Model 4"
          class="img-fluid rounded shadow-sm">
-    <p class="fw-semibold mt-2 mb-0">Model 4</p>
+    <p class="fw-semibold mt-2 mb-0">Setelan Jersey</p>
   </div>
 </div>
 
 <!-- Pilihan Kerah -->
-<h2 class="fw-bold text-center mb-4 text-uppercase">Pilihan Kerah</h2>
+<div class="container">
+  <style>
+  .judul-bahan {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .judul-bahan::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #0d6efd; /* warna biru bootstrap */
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+</style>
+<h2 class="judul-bahan">Pilihan Kerah</h2>
+
+
 <div class="row align-items-center mb-5">
   <div class="col-md-6 text-center mb-3 mb-md-0">
     <img src="{{ asset('img/kerah.jpg') }}" alt="Pilihan Kerah"

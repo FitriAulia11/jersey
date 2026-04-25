@@ -104,7 +104,7 @@
                 </tr>
                 <tr>
                   <th class="text-nowrap">WhatsApp</th>
-                  <td>: (jika ada)</td>
+                  <td>: (No yang aktif)</td>
                 </tr>
                 <tr>
                   <th class="text-nowrap">JUMLAH KAOS - UKURAN</th>
@@ -143,13 +143,17 @@
           </table>
 
           <!-- Kontak WA -->
-          <div class="alert alert-success text-center py-4">
-            <p class="mb-2 fw-semibold fs-5">Atau langsung hubungi kami via WhatsApp:</p>
-            <a href="https://wa.me/6285723736946" class="btn btn-success btn-lg px-5">
-              <i class="bi bi-whatsapp me-2"></i> Chat WhatsApp Sekarang
-            </a>
-            <p class="mt-3 mb-0 text-muted fs-6">Bisa juga via SMS atau Telepon ke nomor yang sama.</p>
-          </div>
+        <div class="alert alert-success text-center py-4">
+  <p class="mb-2 fw-semibold fs-5">Atau langsung hubungi kami via WhatsApp:</p>
+  
+  <a href="https://wa.me/6285723736946?text=Halo%20kak,%20izin%20tanya%20terkait%20jersey%20customnya%20"
+     target="_blank"
+     class="btn btn-success btn-lg px-5">
+    <i class="bi bi-whatsapp me-2"></i> Chat WhatsApp Sekarang
+  </a>
+
+  <p class="mt-3 mb-0 text-muted fs-6">Bisa juga via SMS atau Telepon ke nomor yang sama.</p>
+</div>
 
         </div>
       </div>

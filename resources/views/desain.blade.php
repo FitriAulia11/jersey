@@ -50,6 +50,14 @@
         transform: scale(1.03);
         transition: 0.3s;
     }
+
+    .jersey-item img {
+  transition: 0.3s;
+}
+
+.jersey-item img:hover {
+  transform: scale(1.05);
+}
 </style>
 
 <!-- Hero Section -->
@@ -82,38 +90,14 @@
         <input type="text" id="searchInput" class="form-control border-0"
                placeholder="Cari jersey custem (misal: futsal, badminton)" autocomplete="off"
                style="border-top-right-radius: 50px; border-bottom-right-radius: 50px;">
+       <span id="clearBtn" 
+      class="input-group-text bg-white border-0 pe-4 d-none"
+      style="cursor: pointer;">
+  <i class="bi bi-x-lg text-muted"></i>
+</span>
       </div>
       <div id="suggestionBox" class="position-absolute w-100 bg-white shadow-sm border rounded mt-1 d-none"
            style="z-index: 999; max-height: 230px; overflow-y: auto;"></div>
-    </div>
-
-    <!-- Pilih Warna -->
-    <div class="mt-5 text-center">
-      <h5 class="mb-3 text-dark fw-semibold">Pilih Warna Jersey:</h5>
-      <div class="d-flex justify-content-center flex-wrap gap-2" id="warnaFilter">
-        @php
-          $warnaOptions = [
-            'hitam' => '#000000', 'putih' => '#FFFFFF', 'kuning' => '#FFD700',
-            'merah' => '#FF0000', 'biru' => '#0000FF', 'hijau' => '#008000',
-            'coklat' => '#8B4513', 'ungu' => '#800080', 'pink' => '#FFC0CB',
-            'abu' => '#D3D3D3'
-          ];
-          $textColor = [
-            'putih' => '#000', 'kuning' => '#000', 'pink' => '#000', 'abu' => '#000',
-            'hitam' => '#fff', 'merah' => '#fff', 'biru' => '#fff',
-            'hijau' => '#fff', 'coklat' => '#fff', 'ungu' => '#fff'
-          ];
-        @endphp
-        @foreach ($warnaOptions as $warna => $hex)
-          <button class="btn warna-btn fw-semibold"
-                  data-warna="{{ $warna }}"
-                  style="background-color: {{ $hex }}; color: {{ $textColor[$warna] ?? '#000' }};
-                         border: 2px solid #ddd; min-width: 80px; border-radius: 30px;
-                         padding: 8px 16px; text-transform: capitalize; box-shadow: 1px 1px 4px rgba(0,0,0,0.2);">
-            {{ ucfirst($warna) }}
-          </button>
-        @endforeach
-      </div>
     </div>
 
     @php
@@ -126,14 +110,6 @@
         'Jersey Volly' => range(41, 47),
       ];
 
-      $warnaMap = [
-        1 => 'putih', 2 => 'merah', 3 => 'hitam', 4 => 'biru', 5 => 'ungu', 6 => 'merah', 7 => 'merah', 8 => 'hijau',
-        9 => 'kuning', 10 => 'hitam', 11 => 'hitam', 12 => 'merah', 13 => 'merah', 14 => 'kuning', 15 => 'biru', 16 => 'hitam',
-        17 => 'hitam', 18 => 'biru', 19 => 'hijau', 20 => 'ungu', 21 => 'merah', 22 => 'biru', 23 => 'hijau', 24 => 'putih',
-        25 => 'merah', 26 => 'merah', 27 => 'biru', 28 => 'hijau', 29 => 'pink', 30 => 'kuning', 31 => 'biru', 32 => 'hitam',
-        33 => 'hitam', 34 => 'hitam', 35 => 'hitam', 36 => 'hitam', 37 => 'hijau', 38 => 'biru', 39 => 'hitam', 40 => 'hitam',
-        41 => 'putih', 42 => 'hitam', 43 => 'hijau', 44 => 'hijau', 45 => 'biru', 46 => 'biru', 47 => 'kuning'
-      ];
     @endphp
 
     @foreach ($kategori as $nama => $range)
@@ -204,6 +180,12 @@
                 Waktu pembuatan ± 3 hari kerja
               </li>
             </ul>
+            <div class="mt-4">
+  <a href="#" id="btnPesanWA"
+     class="btn btn-success w-100 rounded-pill py-2 shadow">
+    <i class="bi bi-whatsapp me-2"></i> Pesan Sekarang
+  </a>
+</div>
           </div>
         </div>
       </div>
@@ -211,14 +193,18 @@
   </div>
 </div>
 
-<!-- Script -->
 <script>
   const searchInput = document.getElementById('searchInput');
   const suggestionBox = document.getElementById('suggestionBox');
+  const clearBtn = document.getElementById('clearBtn');
 
+  // 🔍 SEARCH + SUGGESTION
   searchInput.addEventListener('keyup', function () {
     const keyword = this.value.toLowerCase();
+
     if (keyword.length >= 1) {
+      clearBtn.classList.remove('d-none'); // munculin X
+
       fetch(`/search-jersey?q=${encodeURIComponent(keyword)}`)
         .then(res => res.json())
         .then(data => {
@@ -242,17 +228,29 @@
           }
         });
     } else {
+      clearBtn.classList.add('d-none'); // sembunyiin X
       suggestionBox.classList.add('d-none');
       filterJersey('');
     }
   });
 
+  // ❌ TOMBOL X (CLEAR)
+  clearBtn.addEventListener('click', function () {
+    searchInput.value = '';
+    searchInput.focus();
+    clearBtn.classList.add('d-none');
+    suggestionBox.classList.add('d-none');
+    filterJersey(''); // balikin semua data
+  });
+
+  // klik luar → tutup suggestion
   document.addEventListener('click', function (e) {
     if (!searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
       suggestionBox.classList.add('d-none');
     }
   });
 
+  // 🔎 FILTER DATA
   function filterJersey(keyword) {
     const sections = document.querySelectorAll('.jersey-section');
     keyword = keyword.toLowerCase();
@@ -262,7 +260,7 @@
     });
   }
 
-  // Warna Filter
+  // 🎨 FILTER WARNA
   document.querySelectorAll('.warna-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const warna = btn.getAttribute('data-warna');
@@ -273,8 +271,8 @@
     });
   });
 
-  // Modal Pop-up Jersey
- function openModal(imgUrl, captionText) {
+  // 🖼️ MODAL
+  function openModal(imgUrl, captionText) {
     const modalImg = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
     modalImg.src = imgUrl;
@@ -283,7 +281,8 @@
     const modal = new bootstrap.Modal(document.getElementById('modalJersey'));
     modal.show();
   }
- document.getElementById('modalJersey').addEventListener('hidden.bs.modal', function () {
+
+  document.getElementById('modalJersey').addEventListener('hidden.bs.modal', function () {
     document.body.classList.remove('modal-open');
     document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
     document.body.style.overflow = 'auto';
@@ -294,13 +293,67 @@
       e.preventDefault();
       const imgUrl = this.querySelector('img').src;
       const caption = this.querySelector('img').alt || "Jersey Custom";
-
       openModal(imgUrl, caption);
     });
   });
-  
-  </script>
 
+const sliders = document.querySelectorAll('.d-flex.overflow-auto');
+
+  sliders.forEach(slider => {
+    const speed = 1;
+
+    function autoScroll() {
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+      if (slider.scrollLeft >= maxScroll) {
+        // stop sebentar biar halus
+        clearInterval(interval);
+
+        setTimeout(() => {
+          slider.scrollTo({ left: 0, behavior: 'smooth' });
+
+          // lanjut lagi setelah balik
+          setTimeout(() => {
+            interval = setInterval(autoScroll, 20);
+          }, 500);
+
+        }, 800); // delay sebelum balik
+      } else {
+        slider.scrollLeft += speed;
+      }
+    }
+
+    let interval = setInterval(autoScroll, 20);
+
+    // pause saat hover
+    slider.addEventListener('mouseenter', () => clearInterval(interval));
+    slider.addEventListener('mouseleave', () => {
+      interval = setInterval(autoScroll, 20);
+    });
+  });
+
+  function openModal(imgUrl, captionText) {
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const btnWA = document.getElementById('btnPesanWA');
+
+    modalImg.src = imgUrl;
+    modalCaption.textContent = captionText;
+
+    // 🔥 NOMOR WA (ganti punyamu)
+    const noWa = "6285723736946";
+
+    // pesan otomatis
+    const pesan = `Halo kak, saya tertarik dengan ${captionText}, apakah masih tersedia?`;
+
+    // set link WA
+    btnWA.href = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
+
+    const modal = new bootstrap.Modal(document.getElementById('modalJersey'));
+    modal.show();
+  }
+
+</script>
 <!-- Tambahkan di bawah semua script -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
