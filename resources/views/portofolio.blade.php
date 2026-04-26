@@ -9,16 +9,35 @@
       <p class="text-muted fs-5">Beberapa hasil desain dan produksi jersey custom oleh tim kami.</p>
     </div>
 
-    <!-- Galeri Portofolio -->
-    <div class="row g-4">
-      @for ($i = 1; $i <= 12; $i++)
-      <div class="col-md-3 col-sm-6">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="{{ asset('img/portofolio/portfolio' . $i . '.jpg') }}" class="card-img-top" alt="Portofolio {{ $i }}">
+@php
+  $images = [
+    'R1.jpeg',
+    'R2.jpeg',
+    'R3.jpeg',
+    'R4.jpeg',
+    'R5.jpeg',
+    'R6.jpeg',
+  ];
+@endphp
+
+<div class="container">
+  <div class="row g-4">
+    @foreach ($images as $img)
+    <div class="col-md-3 col-sm-6">
+      <div class="card border-0 shadow-sm h-100">
+
+        <!-- WRAPPER GAMBAR -->
+        <div style="height: 220px; overflow: hidden; border-radius: 12px;">
+          <img src="{{ asset('img/' . $img) }}" 
+               class="w-100 h-100"
+               style="object-fit: cover; transition: 0.3s;">
         </div>
+
       </div>
-      @endfor
     </div>
+    @endforeach
+  </div>
+</div>
 
     <!-- CTA -->
     <div class="text-center mt-5">

@@ -156,26 +156,41 @@
 <section class="py-5" style="background-color: #fff8e1;">
     <div class="container text-center">
         <h2 class="section-title">Apa Kata Mereka?</h2>
+
         <div class="row justify-content-center mt-4">
             @foreach([
-                ['img/testi1.jpg', '“Kualitas jerseynya mantap! Respon admin juga cepat.”', 'Reza – Tim Futsal SMAN 2'],
-                ['img/testi2.jpg', '“Desain bebas, harga terjangkau, recommended banget!”', 'Dina – Komunitas Gowes Bandung'],
-                ['img/testi3.jpg', '“Sudah repeat order 3x, hasil selalu puas.”', 'Andi – Esport Club Garut'],
+                ['img/R1.jpeg', 'Jersey tim kami jadi makin keren, bahan adem dan nyaman dipakai saat tanding!', 'Reza – Tim Futsal SMAN 2'],
+                ['img/R2.jpeg', 'Sablon rapi dan desain sesuai request, dipakai gowes jadi makin percaya diri!', 'Dina – Komunitas Gowes Bandung'],
+                ['img/R3.jpeg', 'Printing tajam, warna tidak luntur, cocok banget untuk kebutuhan esport kami.', 'Andi – Esport Club Garut'],
             ] as [$foto, $komentar, $nama])
+
             <div class="col-md-4 mb-4">
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body">
-                        <img src="{{ asset($foto) }}" class="rounded-circle mb-3" width="70" height="70" style="object-fit: cover;">
-                        <p class="text-muted fst-italic">"{{ $komentar }}"</p>
-                        <h6 class="fw-bold text-dark mt-2">{{ $nama }}</h6>
+                        
+                        <!-- FOTO -->
+                        <img src="{{ asset($foto) }}" 
+                             class="mb-3" 
+                             style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+
+                        <!-- KOMENTAR -->
+                        <p class="text-muted fst-italic">
+                            "{{ $komentar }}"
+                        </p>
+
+                        <!-- NAMA -->
+                        <h6 class="fw-bold text-dark mt-2">
+                            {{ $nama }}
+                        </h6>
+
                     </div>
                 </div>
             </div>
+
             @endforeach
         </div>
     </div>
 </section>
-
 <!-- Galeri Desain -->
 <section class="py-5 bg-white text-center">
     <div class="container">

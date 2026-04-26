@@ -128,9 +128,9 @@
   </div>
 
   <div class="col-md-4 col-6 mb-4 text-center">
-    <img src="{{ asset('img/mesin print.jpeg') }}" alt="Mesin 3"
+    <img src="{{ asset('img/mesin printing.jpeg') }}" alt="Mesin 3"
          class="img-mesin rounded shadow-sm">
-    <p class="fw-semibold mt-2 mb-0">Mesin Jahit</p>
+    <p class="fw-semibold mt-2 mb-0">Mesin printing</p>
   </div>
 
 </div>

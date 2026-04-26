@@ -332,7 +332,7 @@ const sliders = document.querySelectorAll('.d-flex.overflow-auto');
     });
   });
 
-  function openModal(imgUrl, captionText) {
+function openModal(imgUrl, captionText) {
     const modalImg = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
     const btnWA = document.getElementById('btnPesanWA');
@@ -340,14 +340,17 @@ const sliders = document.querySelectorAll('.d-flex.overflow-auto');
     modalImg.src = imgUrl;
     modalCaption.textContent = captionText;
 
-    // 🔥 NOMOR WA (ganti punyamu)
+    // 🔥 NOMOR WA (punya kamu)
     const noWa = "6285723736946";
 
-    // pesan otomatis
-    const pesan = `Halo kak, saya tertarik dengan ${captionText}, apakah masih tersedia?`;
+    // 🔥 PESAN + GAMBAR OTOMATIS
+    const pesan = `Halo kak, saya tertarik dengan desain berikut:%0A
+Nama: ${captionText}%0A
+Link Gambar: ${imgUrl}%0A
+Bisa dibuatkan seperti ini ya 🙏`;
 
     // set link WA
-    btnWA.href = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
+    btnWA.href = `https://wa.me/${noWa}?text=${pesan}`;
 
     const modal = new bootstrap.Modal(document.getElementById('modalJersey'));
     modal.show();
